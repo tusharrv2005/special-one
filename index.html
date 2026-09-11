@@ -1,382 +1,363 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* =====================================
+   OPEN SURPRISE
+===================================== */
 
-    <title>For Shikha — Happy Birthday</title>
+function openGift() {
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    const hero =
+        document.getElementById("hero");
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+    const content =
+        document.getElementById("content");
 
-    <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+    hero.style.animation =
+        "fadeUp .5s ease reverse";
 
-    <!-- Decorative background -->
-    <div class="background-shape shape-one"></div>
-    <div class="background-shape shape-two"></div>
 
-    <!-- Top navigation -->
-    <nav class="navbar">
-        <div class="logo">S<span>.</span></div>
+    setTimeout(() => {
 
-        <div class="nav-text">
-            A little something for you
-        </div>
-    </nav>
+        hero.style.display = "none";
 
+        content.classList.remove("hidden");
 
-    <!-- HERO -->
-    <section class="hero" id="hero">
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-        <div class="hero-left">
+    }, 350);
 
-            <div class="eyebrow">
-                SEPTEMBER • A SPECIAL DAY
-            </div>
+}
 
-            <h1>
-                Happy Birthday,
-                <em>Shikha.</em>
-            </h1>
 
-            <p class="hero-description">
-                Not every birthday needs a long message.
-                Sometimes, a little surprise says it better.
-            </p>
 
-            <button class="primary-btn" onclick="openGift()">
-                <span>Open your surprise</span>
-                <b>→</b>
-            </button>
+/* =====================================
+   INTERACTIVE CARDS
+===================================== */
 
-        </div>
+const messages = [
 
+    "You're genuinely one of those people who can make an ordinary day a little more fun. ✦",
 
-        <div class="hero-right">
+    "Never underestimate yourself. You are capable of much more than you sometimes realize. ♡",
 
-            <div class="birthday-card">
+    "I hope you always have people around you who celebrate your happiness as much as their own. ✨"
 
-                <div class="card-top">
-                    <span>FOR</span>
-                    <strong>SHIKHA</strong>
-                </div>
+];
 
-                <div class="flower-art">
-                    <div class="flower flower-a">✿</div>
-                    <div class="flower flower-b">✿</div>
-                    <div class="flower flower-c">✿</div>
-                    <div class="stem"></div>
-                </div>
 
-                <div class="card-bottom">
-                    <span>MAKE A WISH</span>
-                    <span>✦</span>
-                </div>
+function revealCard(index) {
 
-            </div>
+    const box =
+        document.getElementById(
+            "cardMessage"
+        );
 
-        </div>
 
-    </section>
+    box.style.opacity = "0";
 
 
-    <!-- SURPRISE CONTENT -->
+    setTimeout(() => {
 
-    <main id="content" class="hidden">
+        box.textContent =
+            messages[index];
 
+        box.style.opacity = "1";
 
-        <!-- INTRO -->
-        <section class="content-section">
 
-            <div class="section-label">
-                01 — A NOTE FOR YOU
-            </div>
+        box.animate(
 
-            <div class="note-layout">
+            [
+                {
+                    transform: "translateY(8px)"
+                },
 
-                <div>
-                    <h2>
-                        A small note
-                        <br>
-                        for a <em>great friend.</em>
-                    </h2>
-                </div>
-
-                <div class="note">
-
-                    <p class="hello">
-                        Dear Shikha,
-                    </p>
-
-                    <p>
-                        I could have just sent you a simple
-                        “Happy Birthday”, but I thought I'd
-                        make something a little different.
-                    </p>
+                {
+                    transform: "translateY(0)"
+                }
 
-                    <p>
-                        So here's a small corner of the internet
-                        made just for you — a place where you
-                        can pause for a moment and remember
-                        that today is <strong>your day.</strong>
-                    </p>
+            ],
 
-                    <p>
-                        I hope this year brings you new
-                        opportunities, peaceful days,
-                        unexpected happiness and lots of
-                        moments you'll want to remember.
-                    </p>
+            {
+                duration: 350
+            }
 
-                    <p class="final-line">
-                        Keep smiling. Keep growing.
-                        And keep being you. ♡
-                    </p>
+        );
 
-                    <div class="signature">
-                        — Tushar
-                    </div>
+    }, 150);
 
-                </div>
+}
 
-            </div>
 
-        </section>
 
+/* =====================================
+   MAKE A WISH
+===================================== */
 
-        <!-- WISHES -->
+function makeWish() {
 
-        <section class="content-section wishes-section">
+    const result =
+        document.getElementById(
+            "wishResult"
+        );
 
-            <div class="section-label">
-                02 — FOUR WISHES
-            </div>
 
-            <h2>
-                Things I hope this year
-                <em>gives you.</em>
-            </h2>
+    result.classList.remove(
+        "hidden"
+    );
 
 
-            <div class="wish-grid">
+    createSparkles();
 
-                <article class="wish">
-                    <div class="wish-number">01</div>
-                    <div class="wish-symbol">♡</div>
-                    <h3>More happiness</h3>
-                    <p>
-                        The kind that comes from
-                        little moments you don't expect.
-                    </p>
-                </article>
 
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 
-                <article class="wish">
-                    <div class="wish-number">02</div>
-                    <div class="wish-symbol">✦</div>
-                    <h3>Big achievements</h3>
-                    <p>
-                        May your hard work take you
-                        closer to everything you want.
-                    </p>
-                </article>
+}
 
 
-                <article class="wish">
-                    <div class="wish-number">03</div>
-                    <div class="wish-symbol">○</div>
-                    <h3>Peace of mind</h3>
-                    <p>
-                        More calm days and fewer
-                        unnecessary worries.
-                    </p>
-                </article>
 
+/* =====================================
+   FINAL CELEBRATION
+===================================== */
 
-                <article class="wish">
-                    <div class="wish-number">04</div>
-                    <div class="wish-symbol">✧</div>
-                    <h3>Beautiful memories</h3>
-                    <p>
-                        Enough good memories to
-                        make this year unforgettable.
-                    </p>
-                </article>
+function celebrate() {
 
-            </div>
+    const celebration =
+        document.getElementById(
+            "celebration"
+        );
 
-        </section>
 
+    celebration.classList.remove(
+        "hidden"
+    );
 
-        <!-- INTERACTIVE SECTION -->
 
-        <section class="interactive-section">
+    createConfetti();
 
-            <div class="interactive-inner">
 
-                <div class="section-label">
-                    03 — JUST FOR FUN
-                </div>
+    setTimeout(() => {
 
-                <h2>
-                    Pick a card.
-                    <em>Any card.</em>
-                </h2>
+        celebration.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
 
-                <p class="section-subtitle">
-                    There might be a little message waiting inside.
-                </p>
+    }, 200);
 
+}
 
-                <div class="cards">
 
-                    <button onclick="revealCard(0)" class="flip-card">
-                        <span>01</span>
-                        <b>Open</b>
-                    </button>
 
-                    <button onclick="revealCard(1)" class="flip-card">
-                        <span>02</span>
-                        <b>Open</b>
-                    </button>
+/* =====================================
+   CONFETTI
+===================================== */
 
-                    <button onclick="revealCard(2)" class="flip-card">
-                        <span>03</span>
-                        <b>Open</b>
-                    </button>
+function createConfetti() {
 
-                </div>
+    const symbols = [
+        "✦",
+        "♡",
+        "✧",
+        "•",
+        "✿"
+    ];
 
 
-                <div id="cardMessage" class="card-message">
-                    Choose one above ✦
-                </div>
+    for (
+        let i = 0;
+        i < 70;
+        i++
+    ) {
 
-            </div>
+        const piece =
+            document.createElement(
+                "div"
+            );
 
-        </section>
 
+        piece.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
 
-        <!-- MAKE A WISH -->
 
-        <section class="wish-section">
+        piece.style.position =
+            "fixed";
 
-            <div class="moon">
-                ✦
-            </div>
 
-            <div class="section-label">
-                04 — MAKE A WISH
-            </div>
+        piece.style.left =
+            Math.random() * 100 +
+            "vw";
 
-            <h2>
-                Take a moment.
-                <br>
-                <em>Make a wish.</em>
-            </h2>
 
-            <p>
-                Close your eyes, think of something
-                you really want...
-            </p>
+        piece.style.top =
+            "-20px";
 
-            <button class="wish-button" onclick="makeWish()">
-                Make my wish ✨
-            </button>
 
-            <div id="wishResult" class="wish-result hidden">
-                <span>✦</span>
-                <h3>Wish sent.</h3>
-                <p>
-                    Now let's hope the universe
-                    is listening. ♡
-                </p>
-            </div>
+        piece.style.fontSize =
+            12 +
+            Math.random() * 20 +
+            "px";
 
-        </section>
 
+        piece.style.color =
+            Math.random() > .5
+                ? "#e985a5"
+                : "#8e7a91";
 
-        <!-- FINAL -->
 
-        <section class="final-section">
+        piece.style.zIndex =
+            "9999";
 
-            <div class="final-box">
 
-                <div class="small-star">✦</div>
+        piece.style.pointerEvents =
+            "none";
 
-                <p class="eyebrow">
-                    ONE LAST THING
-                </p>
 
-                <h2>
-                    Here's to
-                    <em>you, Shikha.</em>
-                </h2>
+        document.body.appendChild(
+            piece
+        );
 
-                <p class="final-text">
-                    May the next chapter of your life
-                    be full of things that make you proud,
-                    people who make you laugh,
-                    and moments that make you say,
-                    “I'm glad I was here.”
-                </p>
 
-                <button
-                    class="primary-btn"
-                    onclick="celebrate()">
+        const duration =
+            1800 +
+            Math.random() * 2500;
 
-                    Happy Birthday ♡
 
-                </button>
+        piece.animate(
 
+            [
 
-                <div
-                    id="celebration"
-                    class="celebration hidden">
+                {
+                    transform:
+                        "translateY(0) rotate(0deg)",
 
-                    <div class="big-heart">♡</div>
+                    opacity: 1
 
-                    <h3>
-                        Happy Birthday, Shikha!
-                    </h3>
+                },
 
-                    <p>
-                        Have a beautiful day
-                        and an even more beautiful year. ✨
-                    </p>
+                {
 
-                </div>
+                    transform:
+                        `translateY(110vh) rotate(${Math.random() * 600}deg)`,
 
-            </div>
+                    opacity: 0
 
-        </section>
+                }
 
+            ],
 
-        <footer>
+            {
+                duration: duration,
 
-            <div class="footer-logo">
-                S.
-            </div>
+                easing:
+                    "cubic-bezier(.2,.7,.3,1)"
+            }
 
-            <p>
-                Made with care for Shikha Maurya.
-            </p>
+        ).onfinish =
+            () => piece.remove();
 
-            <span>
-                Happy Birthday ✦
-            </span>
+    }
 
-        </footer>
+}
 
-    </main>
 
 
-    <script src="script.js"></script>
+/* =====================================
+   SMALL SPARKLE EFFECT
+===================================== */
 
-</body>
-</html>
+function createSparkles() {
+
+    for (
+        let i = 0;
+        i < 30;
+        i++
+    ) {
+
+        const sparkle =
+            document.createElement(
+                "div"
+            );
+
+
+        sparkle.textContent = "✦";
+
+
+        sparkle.style.position =
+            "fixed";
+
+
+        sparkle.style.left =
+            Math.random() * 100 +
+            "vw";
+
+
+        sparkle.style.top =
+            Math.random() * 100 +
+            "vh";
+
+
+        sparkle.style.color =
+            "#e985a5";
+
+
+        sparkle.style.fontSize =
+            15 +
+            Math.random() * 20 +
+            "px";
+
+
+        sparkle.style.pointerEvents =
+            "none";
+
+
+        sparkle.style.zIndex =
+            "9999";
+
+
+        document.body.appendChild(
+            sparkle
+        );
+
+
+        sparkle.animate(
+
+            [
+                {
+                    transform: "scale(0)",
+                    opacity: 0
+                },
+
+                {
+                    transform: "scale(1.4)",
+                    opacity: 1
+                },
+
+                {
+                    transform: "scale(0)",
+                    opacity: 0
+                }
+
+            ],
+
+            {
+                duration:
+                    1000 +
+                    Math.random() * 1000
+            }
+
+        ).onfinish =
+            () => sparkle.remove();
+
+    }
+
+}
